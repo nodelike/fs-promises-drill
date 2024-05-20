@@ -1,20 +1,36 @@
 const fs = require("fs").promises;
-const path = require("path");
 
-function readFile(filename) {
-    return fs.readFile(filename, "utf8");
+async function readFile(filename) {
+    try {
+        let data = await fs.readFile(filename, "utf8");
+        return data;
+    } catch (error) {
+        console.log(`Error in reading file: ${error}`);
+    }
 }
 
-function writeFile(filename, data) {
-    return fs.writeFile(filename, data);
+async function writeFile(filename, data) {
+    try {
+        await fs.writeFile(filename, data);
+    } catch (error) {
+        console.log(`Error in writing to file: ${error}`);
+    }
 }
 
-function appendFile(filename, data) {
-    return fs.appendFile(filename, data);
+async function appendFile(filename, data) {
+    try {
+        await fs.appendFile(filename, data);
+    } catch (error) {
+        console.log(`Error in appending to file: ${error}`);
+    }
 }
 
-function deleteFile(filename) {
-    return fs.unlink(filename);
+async function deleteFile(filename) {
+    try {
+        await fs.unlink(filename);
+    } catch (error) {
+        console.log(`Error in deleting file: ${error}`);
+    }
 }
 
 module.exports = {
