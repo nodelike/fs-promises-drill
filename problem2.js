@@ -1,20 +1,51 @@
-const fs = require("fs").promises;
-const path = require("path");
+const fs = require("fs")
 
 function readFile(filename) {
-    return fs.readFile(filename, "utf8");
+    return new Promise((resolve, reject) => {
+        fs.readFile(filename, "utf8", (err, data) => {
+            if(err){
+                reject(err);
+            } else {
+                resolve(data);
+            }
+        });
+    })
 }
 
 function writeFile(filename, data) {
-    return fs.writeFile(filename, data);
+    return new Promise((resolve, reject) => {
+        fs.writeFile(filename, data, (err) => {
+            if(err){
+                reject(err);
+            } else {
+                resolve();
+            }
+        });
+    })
 }
 
 function appendFile(filename, data) {
-    return fs.appendFile(filename, data);
+    return new Promise((resolve, reject) => {
+        fs.appendFile(filename, data, (err) => {
+            if(err) {
+                reject(err);
+            } else {
+                resolve();
+            }
+        });
+    })
 }
 
 function deleteFile(filename) {
-    return fs.unlink(filename);
+    return new Promise((resolve, reject) => {
+        fs.unlink(filename, (err) => {
+            if(err){
+                reject(err);
+            } else {
+                resolve();
+            }
+        });
+    })
 }
 
 module.exports = {
