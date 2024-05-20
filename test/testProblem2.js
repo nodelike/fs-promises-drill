@@ -73,9 +73,9 @@ readFile("./test/lipsum_2.txt")
 
                 return Promise.all(deletePromises);
             })
-    }).catch((error) => {
-        console.log(`Error in performing operations: ${error}`)
-    }).then(() => {
-        console.log("Operations performed successfully");
-    })
+        }).then(() => {
+            console.log("Operations performed successfully");
+        }).catch((error) => {
+            console.log(`Error in performing operations: ${error}`)
+        })
 
